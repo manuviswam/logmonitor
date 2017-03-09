@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Log monitor</title>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous">
+    </script>
+    <script>
+        $(function() {
+          var ws = new WebSocket("ws://localhost:8080/logs");
+          ws.onmessage = function(event) {
+            console.log("Message received" + event.data);
+            $('#logs').append('<br />' + event.data)
+          };
+        });
+    </script>
+	</head>
+	<body>
+    <div id="logs"></div>
+	</body>
+</html>
